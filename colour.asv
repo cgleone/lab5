@@ -17,8 +17,8 @@ imshow(cb)
 figure()
 imshow(cr)
 
-new_cb = imresize(imresize(cb, .5, 'bilinear'), 2, 'bilinear');
-new_cr = imresize(imresize(cr, .5, 'bilinear'), 2, 'bilinear');
+new_cb = imresize(imresize(cb, .1, 'bilinear'), 10, 'bilinear');
+new_cr = imresize(imresize(cr, .1, 'bilinear'), [, 'bilinear');
 
 new_ycbcr = zeros(size(ycbcr));
 new_ycbcr(:,:,1) = y;
@@ -26,7 +26,7 @@ new_ycbcr(:,:,2) = new_cb;
 new_ycbcr(:,:,3) = new_cr;
 new_ycbcr = uint8(new_ycbcr);
 
-new_img = ycbcr2rgb(new_ycbcr);
+new_img = ycbcr2rgb(ycbcr);
 
 figure()
 imshow(new_img)
