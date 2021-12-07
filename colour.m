@@ -1,3 +1,4 @@
+
 clear all;
 
 f_rgb = imread('peppers.png');
@@ -32,4 +33,38 @@ pixel_labels = reshape(cluster_idx, m, n);
 h = figure,imshow(pixel_labels, [])
 title('Image labeled by cluster index');
 colormap('jet')
+
+=======
+img = imread('peppers.png');
+ycbcr = rgb2ycbcr(img);
+y = ycbcr(:,:,1);
+cb = ycbcr(:,:,2);
+cr = ycbcr(:,:,3);
+
+
+figure()
+imshow(img)
+
+figure()
+imshow(y)
+
+figure()
+imshow(cb)
+
+figure()
+imshow(cr)
+
+new_cb = imresize(imresize(cb, .5, 'bilinear'), 2, 'bilinear');
+new_cr = imresize(imresize(cr, .5, 'bilinear'), 2, 'bilinear');
+
+new_ycbcr = zeros(size(ycbcr));
+new_ycbcr(:,:,1) = y;
+new_ycbcr(:,:,2) = new_cb;
+new_ycbcr(:,:,3) = new_cr;
+new_ycbcr = uint8(new_ycbcr);
+
+new_img = ycbcr2rgb(new_ycbcr);
+
+figure()
+imshow(new_img)
 
