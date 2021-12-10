@@ -10,12 +10,12 @@ f_lab = applycform(f_rgb, transform);
 % title('L*a*b* colour space')
 
 
-K = 2;
-row = [55 200];
-col = [155 400];
-% K = 4;
-% row = [55 130 200 280];
-% col = [155 110 400 470];
+% K = 2;
+% row = [55 200];
+% col = [155 400];
+K = 4;
+row = [55 130 200 280];
+col = [155 110 400 470];
 
 % Convert (r,c) indexing to 1D linear indexing.
 idx = sub2ind([size(f_lab,1) size(f_lab,2)], row, col);

@@ -7,16 +7,17 @@ Q = [16 11 10 16 24 40 51 61;
 49 64 78 87 103 121 120 101;
 72 92 95 98 112 100 103 99];
 
-Q = Q * 10;
+Q = Q * 5;
 
 T = dctmtx(8);
 
 img_og = double(im2gray(imread('lena.tiff')));
 
 trans_img = blkproc(img_og-128,[8 8],'P1*x*P2',T,T');
-trans_img_scaled = floor(blkproc(trans_img, [8 8], 'x./P1', Q));
+trans_img_scaled = round(blkproc(trans_img, [8 8], 'x./P1', Q));
 img = blkproc(trans_img_scaled, [8 8], 'x.*P1', Q);
-img = blkproc(img, [8 8], 'P1*x*P2', T', T) + 128;
+img = floor(blkproc(img, [8 8], 'P1*x*P2', T', T)) + 128;
 
 imshow(uint8(img))
+psnr(img/255, img_og/255)
 

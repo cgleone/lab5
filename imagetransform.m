@@ -22,10 +22,12 @@ mask ( 2 , 1 ) = 1;
 mask ( 3 , 1 ) = 1;
 mask ( 2 , 2 ) = 1;
 thres_trans_img = blkproc(trans_img, [8 8], 'P1.*x', mask);
-thres_img = floor(blkproc(thres_trans_img,[8 8],'P1*x*P2',T',T));
+thres_img = floor(blkproc(thres_trans_img,[8 8],'P1*x*P2',T',T)) + 128;
 
 figure()
 imshow(thres_img, [])
+
+psnr(thres_img, img)
 
 
 
